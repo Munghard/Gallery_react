@@ -1,15 +1,16 @@
 interface SlotProps {
+    url: string
     size: number;
     index: number;
-    randomIndex: number;
 }
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-const Slot: React.FC<SlotProps> = ({ size, randomIndex, index }) => {
+const Slot: React.FC<SlotProps> = ({ url, size, index }) => {
 
 
     const [showModal, setShowModal] = useState(false);
+    console.log(url);
 
     return (
         <>
@@ -30,7 +31,8 @@ const Slot: React.FC<SlotProps> = ({ size, randomIndex, index }) => {
                                 exit={{ scale: 0, transform: 'TranslateX(500px)' }}
                                 transition={{ duration: 0.1, ease: 'easeInOut' }}
                                 className={`max-h-xl max-w-xl rounded-md z-998 border-2 border-zinc-900`}
-                                src={`https://picsum.photos/seed/${randomIndex}/576/576`}
+                                src={url}
+                                title={url}
                                 alt="Icon"
                                 onClick={() => setShowModal(false)}
                             />
@@ -47,7 +49,8 @@ const Slot: React.FC<SlotProps> = ({ size, randomIndex, index }) => {
                 width={size}
                 height={size}
                 className={`border-2 border-zinc-500/20 hover:border-zinc-200/50 rounded-sm bg-zinc-800 hover:bg-zinc-700 shadow-md shadow-black/50`}
-                src={`https://picsum.photos/seed/${randomIndex}/${size}/${size}`}
+                src={url}
+                title={url}
                 alt="Icon"
                 onClick={() => setShowModal(!showModal)}
             />

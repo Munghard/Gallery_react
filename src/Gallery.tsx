@@ -2,12 +2,13 @@ import Slot from './Slot'
 
 interface GalleryProps {
     title?: string;
+    imageUrls: string[];
     slotSize: number;
     sizeX: number;
     sizeY: number;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ title, slotSize, sizeX, sizeY }) => {
+const Gallery: React.FC<GalleryProps> = ({ title, imageUrls, slotSize, sizeX, sizeY }) => {
 
     return (
         <div className="flex flex-col w-fit h-fit gap-1 border-2 border-zinc-500/20 p-2 rounded-sm bg-zinc-800 shadow-md">
@@ -19,8 +20,8 @@ const Gallery: React.FC<GalleryProps> = ({ title, slotSize, sizeX, sizeY }) => {
                     {Array.from({ length: sizeX }).map((_, x) => (
                         <Slot
                             key={x + y}
+                            url={imageUrls[y * sizeX + x]}
                             index={y * sizeX + x}
-                            randomIndex={Number((Math.random() * 1000).toFixed(0))}
                             size={slotSize} />
                     ))}
                 </div>
